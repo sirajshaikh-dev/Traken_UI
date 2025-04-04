@@ -40,6 +40,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   return (
     <div className={cn(calendarVariants({ color, size, className }))}>
+      {/*  Header */}
       <CalendarHeader
         currentMonth={currentMonth}
         variant={variant}
@@ -51,10 +52,11 @@ export const Calendar: React.FC<CalendarProps> = ({
       />
 
       <div className="grid grid-cols-7 gap-1 text-center text-sm">
-        {daysOfWeek.map((day) => (
-          <div key={day} className="font-bold text-gray-400">{day}</div>
+        {daysOfWeek.map((day, index) => (
+          <div key={`${day}-${index}`} className="font-bold text-gray-400">
+            {day}
+          </div>
         ))}
-        
         <CalendarGrid
           currentMonth={currentMonth}
           selectedDates={selectedDates}
@@ -101,7 +103,7 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   onNextMonth,
   onToday
 }) => (
-  <div className={calendarHeaderVariants({ variant })}>
+  <div className={calendarHeaderVariants({ variant: variant === "range-picker" ? "default" : variant })}>
     <button
       onClick={onToday}
       className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
@@ -218,7 +220,7 @@ const YearPicker: React.FC<{ year: number; onChange: (year: number) => void }> =
   <select
     value={year}
     onChange={(e) => onChange(Number(e.target.value))}
-    className="p-2 rounded bg-gray-800 text-white"
+    className="p-2 rounded bg-gray-800 text-white" 
   >
     {Array.from({ length: 10 }).map((_, i) => {
       const yearOption = new Date().getFullYear() - 5 + i;
@@ -227,6 +229,6 @@ const YearPicker: React.FC<{ year: number; onChange: (year: number) => void }> =
           {yearOption}
         </option>
       );
-    })}
+     })}
   </select>
 );
