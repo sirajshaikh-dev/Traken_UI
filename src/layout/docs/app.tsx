@@ -1,5 +1,8 @@
-import { Calendar } from "@/components/Calendar2/Calendar";
+// import { Calendar } from "@/components/Calendar/Calendar"; //Calendar me variants defined nhi hai
+// import { Calendar } from "@/components/Calendar2/Calendar"; // Calendar2 me 3variants defined hai
+import { Calendar } from "@/components/Calendar3/Calendar"; // Calendar3 final version he,
 import { useState } from "react";
+import { Breadcrumb } from "@/components/Breadcrumb";
 
 const Example = () => {
 
@@ -11,16 +14,24 @@ const Example = () => {
 
   return (
     <div className="p-10">
-      <h1 className="text-2xl font-bold mb-4">Select a Date</h1>
       <Calendar
         selectedDates={selectedDates}
         onDateSelect={handleDateSelect}
         disablePast={false}
         disableFuture={false}
-        variant="month-year-picker"
+        variant="range-picker"
         color="default"
         size="md"
       />
+      <Breadcrumb
+        items={[
+          { label: 'Home', href: '#' },
+          { label: 'Music', href: '#' },
+          { label: 'Artist', href: '#' },
+          { label: 'Album', href: '#' },
+          { label: 'Song', isCurrent: true }
+        ]}
+      />      
     </div>
   );
 };

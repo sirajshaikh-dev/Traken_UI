@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 // import { ComponentProps } from "react";
 import { useState } from "react";
 
-import { Calendar } from "@/components/Calendar2/Calendar";
+import { Calendar } from "@/components/Calendar3/Calendar";
 // import { Calendar } from "@/components/Calendar";
 // type StoryProps = ComponentProps<typeof Calendar>;
 
