@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { cn } from "@/lib/utils"; 
+import { cn } from "@/lib/utils";
 import { calendarVariants } from "./CalendarVariants";
 import { CalendarHeader } from "./CalendarHeader";
 import { CalendarGrid } from "./CalendarGrid";
 
 interface CalendarProps {
-  selectedDates: Date[];
+  selectedDates?: Date[];
   onDateSelect: (date: Date) => void;
   disablePast?: boolean;
   disableFuture?: boolean;
@@ -23,12 +23,13 @@ export const Calendar: React.FC<CalendarProps> = ({
   disablePast = false,
   disableFuture = false,
   className = "",
-  variant = "month-year-picker",
+  variant = "default",
   color = "default",
   size = "md",
 }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [range, setRange] = useState<[Date | null, Date | null]>([null, null]);
+  const [hoveredDate, setHoveredDate] = useState<Date | null>(null);
 
   const handleMonthChange = (month: number) => {
     setCurrentMonth(new Date(currentMonth.getFullYear(), month));
@@ -38,19 +39,29 @@ export const Calendar: React.FC<CalendarProps> = ({
     setCurrentMonth(new Date(year, currentMonth.getMonth()));
   };
 
-  const handleRangePicker =(date:Date)=>{
+  const handleDateSelect = (date: Date) => {
     if (variant === "range-picker") {
-      if (!range[0] || range[1]) {
+      // Always start fresh - clear any existing range
+      if (!range[0] || (range[0] && range[1])) {
         setRange([date, null]);
-      } else {
-        const sorted = [range[0], date].sort((a, b) => a!.getTime() - b!.getTime());
+      } else if (range[0] && !range[1]) {
+        // Complete the range
+        const sorted = [range[0], date].sort((a, b) => a.getTime() - b.getTime());
         setRange([sorted[0], sorted[1]]);
-        onDateSelect(date);
       }
+      // Clear any previous selections and only use the current range
+      onDateSelect(date);
     } else {
+      // For default mode, just select the date
       onDateSelect(date);
     }
-  }
+  };
+
+  const handleDateHover = (date: Date | null) => {
+    if (variant === "range-picker" && range[0] && !range[1]) {
+      setHoveredDate(date);
+    }
+  };
 
   return (
     <div className={cn(calendarVariants({ color, size, className }))}>
@@ -64,20 +75,22 @@ export const Calendar: React.FC<CalendarProps> = ({
         onToday={() => setCurrentMonth(new Date())}
       />
 
-      <div className="grid grid-cols-7 gap-1 text-center text-sm">
+      <div className="grid grid-cols-7 gap-1 text-center text-sm mb-2">
         {daysOfWeek.map((day, index) => (
-          <div key={`${day}-${index}`} className="font-bold text-gray-400">
+          <div key={`${day}-${index}`} className="font-bold text-gray-400 py-1">
             {day}
           </div>
         ))}
         <CalendarGrid
           currentMonth={currentMonth}
-          selectedDates={selectedDates}
+          selectedDates={variant === "range-picker" && range[1] ? [range[0], range[1]].filter((date): date is Date => date !== null) : selectedDates}
           range={range}
           variant={variant}
           disablePast={disablePast}
           disableFuture={disableFuture}
-          onDateSelect={handleRangePicker}
+          onDateSelect={handleDateSelect}
+          hoveredDate={hoveredDate}
+          onDateHover={handleDateHover}
         />
       </div>
     </div>
