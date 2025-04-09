@@ -51,7 +51,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
           currentMonth.getMonth(),
           day + 1
         );
-        const isToday = date.toDateString() === today.toDateString();
+        // const isToday = date.toDateString() === today.toDateString();
         
         const isDisabled =
           (disablePast && date < today) || (disableFuture && date > today);
@@ -88,9 +88,15 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
           rangeEnd &&
           date.toDateString() === rangeEnd.toDateString();
         
-        const isSelected = variant === "range-picker" 
-        ? (isRangeStart || isRangeEnd)
-        : selectedDates.some(d => d.toDateString() === date.toDateString()); 
+          const isSelected = variant === "range-picker" 
+          ? (isRangeStart || isRangeEnd)
+          : selectedDates.some(d => d.toDateString() === date.toDateString()) ||
+            date.toDateString() === new Date().toDateString(); // Add today check
+        
+        // Add today highlight logic
+        const isToday = date.toDateString() === new Date().toDateString();
+        const isTodayHighlighted = isToday && selectedDates.length === 0;
+
         return (
         <div key={day} className="flex justify-center" >
             <button key={day} 
@@ -101,6 +107,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                   isDisabled,
                   isPreviewRange: isInPreviewRange,
                   isPreviewEdge,
+                  isTodayHighlighted,
                 }),
                 "w-9 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
                 {
