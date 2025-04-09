@@ -41,18 +41,14 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const handleDateSelect = (date: Date) => {
     if (variant === "range-picker") {
-      // Always start fresh - clear any existing range
       if (!range[0] || (range[0] && range[1])) {
         setRange([date, null]);
       } else if (range[0] && !range[1]) {
-        // Complete the range
         const sorted = [range[0], date].sort((a, b) => a.getTime() - b.getTime());
         setRange([sorted[0], sorted[1]]);
       }
-      // Clear any previous selections and only use the current range
       onDateSelect(date);
     } else {
-      // For default mode, just select the date
       onDateSelect(date);
     }
   };
