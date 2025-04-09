@@ -41,15 +41,15 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const handleDateSelect = (date: Date) => {
     if (variant === "range-picker") {
-      if (!range[0] || (range[0] && range[1])) {
+      if (!range[0] || (range[0] && range[1])) { //No range selected yet, or a range is already completed
         setRange([date, null]);
-      } else if (range[0] && !range[1]) {
-        const sorted = [range[0], date].sort((a, b) => a.getTime() - b.getTime());
+      } else if (range[0] && !range[1]) {   // Range start is selected, but end is not
+        const sorted = [range[0], date].sort((a, b) => a.getTime() - b.getTime());  
         setRange([sorted[0], sorted[1]]);
       }
-      onDateSelect(date);
+      onDateSelect(date); // This will be the end date of the range
     } else {
-      onDateSelect(date);
+      onDateSelect(date); // This will be the single date selected
     }
   };
 

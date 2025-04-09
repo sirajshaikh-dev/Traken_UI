@@ -112,7 +112,6 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
             onMouseEnter={() =>
               variant === "range-picker" && !isDisabled && onDateHover(date)
             }
-            disabled={isDisabled}
           >
             {day + 1}
           </button>
