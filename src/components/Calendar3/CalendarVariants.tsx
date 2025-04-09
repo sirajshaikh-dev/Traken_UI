@@ -39,16 +39,16 @@ export const calendarDayVariants = cva(
         true: "border border-blue-400"
       },
       isSelected: {
-        true: "bg-blue-600 text-white" // Only circular selection
+        true: "bg-blue-600 text-white" 
       },
       isDisabled: {
         true: "text-gray-600 cursor-not-allowed"
       },
       isPreviewRange: {
-        true: "bg-blue-900/30" // Lighter preview background
+        true: "bg-blue-900/30"
       },
       isPreviewEdge: {
-        true: "border border-dashed border-blue-400" // Dashed border for preview edge
+        true: "border border-dashed border-blue-400" 
       }
     },
     compoundVariants: [
