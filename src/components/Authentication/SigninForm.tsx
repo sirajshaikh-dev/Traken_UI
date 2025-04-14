@@ -69,12 +69,12 @@ export function SignInForm({
             <input
               id="remember"
               name="remember"
-              type="radio"
+              type="checkbox"
               checked={remember}
               onChange={(e) => setRemember(e.target.checked)}
-              className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 dark:border-gray-600"
+              className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 dark:border-gray-600 rounded"
             />
-            <label htmlFor="remember" className="block text-sm text-gray-700 dark:text-gray-300">
+            <label htmlFor="remember" className="block text-sm text-gray-700 dark:text-gray-300 select-none">
               Remember me
             </label>
           </div>
