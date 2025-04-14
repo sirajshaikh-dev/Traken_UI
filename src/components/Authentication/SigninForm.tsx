@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { EyeIcon } from './EyeIcon';
+import Button from '../button/Button';
+// import { cn } from '@/lib/utils';
 
 interface SignInFormProps {
   onSignIn?: (email: string, password: string, remember: boolean) => void;
@@ -93,22 +95,16 @@ export function SignInForm({
             </label>
           </div>
 
-          <button
-            type="button"
-            onClick={onPasswordReset}
-            className="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
-          >
+          <a 
+            href="#"
+            className=" text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 hover:underline"
+            onClick={(e) => {
+              e.preventDefault();
+              onPasswordReset?.();
+            }}
+          > 
             Forgot password?
-          </button>
-        </div>
-
-        <div>
-          <button
-            type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
-          >
-            Sign In
-          </button>
+          </a>
         </div>
       </form>
 
@@ -125,33 +121,36 @@ export function SignInForm({
         </div>
 
         <div className="mt-6 grid grid-cols-2 gap-3">
-          <button
-            onClick={onGoogleSignIn}
+          <Button
             className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200"
+            ripple={false} // Disable ripple animation
+            onClick={onGoogleSignIn}
           >
             <FcGoogle className="h-5 w-5" />
             <span className="ml-2">Google</span>
-          </button>
+          </Button>
 
-          <button
-            onClick={onGithubSignIn}
+          <Button
             className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200"
+            ripple={false}
+            onClick={onGithubSignIn}
           >
             <FaGithub className="h-5 w-5" />
             <span className="ml-2">GitHub</span>
-          </button>
+          </Button>
         </div>
       </div>
 
       <div className="mt-6 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
           Don't have an account?{' '}
-          <button
+          <Button
+          variant='ghost'
             onClick={onSignUp}
-            className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
+            className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 p-0 h-auto"
           >
             Sign up
-          </button>
+          </Button>
         </p>
       </div>
     </div>
