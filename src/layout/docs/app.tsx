@@ -3,6 +3,7 @@
 // import { Calendar } from "@/components/Calendar3/Calendar"; // Calendar3 final version he,
 // import { useState } from "react";
 // import { Breadcrumb } from "@/components/Breadcrumb";
+import { AuthDemo } from "@/components/Authentication/AuthDemo";
 import { SignInForm } from "@/components/Authentication/SigninForm";
 const Example = () => {
 
@@ -13,8 +14,13 @@ const Example = () => {
   // };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 ">
-      <SignInForm
+    <>
+    <AuthDemo />
+    {/* The below div was parent/main div now i wrapped up all in fragment to test 
+      use below div to test only Signin form and remove AuthDemo component
+    */}
+    {/* <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 "> */}
+      {/* <SignInForm
         onSignIn={(email, password, remember) => {
           console.log("Sign In:", { email, password, remember });
         }}
@@ -22,7 +28,7 @@ const Example = () => {
         onGithubSignIn={() => console.log("GitHub Sign In")}
         onSignUp={() => console.log("Sign Up")}
         onPasswordReset={() => console.log("Password Reset")}
-      />  
+      />   */}
       {/* <Calendar
         selectedDates={selectedDates}
         onDateSelect={handleDateSelect}
@@ -41,7 +47,8 @@ const Example = () => {
           { label: 'Song', isCurrent: true }
         ]}
       />       */}
-    </div>
+    {/* </div>} */}
+    </>
   );
 };
 

@@ -2,40 +2,53 @@ import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 
-interface SignInFormProps {
-  onSignIn?: (email: string, password: string, remember: boolean) => void;
+interface SignUpFormProps {
+  onSignUp?: (email: string, password: string, name: string) => void;
   onGoogleSignIn?: () => void;
   onGithubSignIn?: () => void;
-  onSignUp?: () => void;
-  onPasswordReset?: () => void;
-  initialRemember?: boolean;
+  onSignIn?: () => void;
+  initialName?: string;
 }
 
-export function SignInForm({
-  onSignIn,
+export function SignUpForm({
+  onSignUp,
   onGoogleSignIn,
   onGithubSignIn,
-  onSignUp,
-  onPasswordReset,
-  initialRemember = false,
-}: SignInFormProps) {
+  onSignIn,
+  initialName = '',
+}: SignUpFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(initialRemember);
+  const [name, setName] = useState(initialName);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSignIn?.(email, password, remember);
+    onSignUp?.(email, password, name);
   };
 
   return (
     <div className="max-w-md w-full mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden p-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Welcome Back</h1>
-        <p className="text-gray-600 dark:text-gray-300">Sign in to your account</p>
+        <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Create Account</h1>
+        <p className="text-gray-600 dark:text-gray-300">Get started with your free account</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Full Name
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white"
+            placeholder="John Doe"
+          />
+        </div>
+
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Email <span className="text-red-500">*</span>
@@ -68,36 +81,12 @@ export function SignInForm({
           />
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <input
-              id="remember"
-              name="remember"
-              type="checkbox"
-              checked={remember}
-              onChange={(e) => setRemember(e.target.checked)}
-              className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 dark:border-gray-600 rounded"
-            />
-            <label htmlFor="remember" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-              Remember me
-            </label>
-          </div>
-
-          <button
-            type="button"
-            onClick={onPasswordReset}
-            className="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
-          >
-            Forgot password?
-          </button>
-        </div>
-
         <div>
           <button
             type="submit"
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
           >
-            Sign In
+            Create Account
           </button>
         </div>
       </form>
@@ -109,7 +98,7 @@ export function SignInForm({
           </div>
           <div className="relative flex justify-center text-sm">
             <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
-              Or continue with
+              Or sign up with
             </span>
           </div>
         </div>
@@ -135,12 +124,12 @@ export function SignInForm({
 
       <div className="mt-6 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Don't have an account?{' '}
+          Already have an account?{' '}
           <button
-            onClick={onSignUp}
+            onClick={onSignIn}
             className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
           >
-            Sign up
+            Sign in
           </button>
         </p>
       </div>
