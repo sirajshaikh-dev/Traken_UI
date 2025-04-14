@@ -1,20 +1,29 @@
 // import { Calendar } from "@/components/Calendar/Calendar"; //Calendar me variants defined nhi hai
 // import { Calendar } from "@/components/Calendar2/Calendar"; // Calendar2 me 3variants defined hai
-import { Calendar } from "@/components/Calendar3/Calendar"; // Calendar3 final version he,
-import { useState } from "react";
-import { Breadcrumb } from "@/components/Breadcrumb";
-
+// import { Calendar } from "@/components/Calendar3/Calendar"; // Calendar3 final version he,
+// import { useState } from "react";
+// import { Breadcrumb } from "@/components/Breadcrumb";
+import { SignInForm } from "@/components/Authentication/SigninForm";
 const Example = () => {
 
-  const [selectedDates, setSelectedDates] = useState<Date[]>([]);
+  // const [selectedDates, setSelectedDates] = useState<Date[]>([]);
 
-  const handleDateSelect = (date: Date) => {
-    setSelectedDates([date]);
-  };
+  // const handleDateSelect = (date: Date) => {
+  //   setSelectedDates([date]);
+  // };
 
   return (
-    <div className="p-10">
-      <Calendar
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 ">
+      <SignInForm
+        onSignIn={(email, password, remember) => {
+          console.log("Sign In:", { email, password, remember });
+        }}
+        onGoogleSignIn={() => console.log("Google Sign In")}
+        onGithubSignIn={() => console.log("GitHub Sign In")}
+        onSignUp={() => console.log("Sign Up")}
+        onPasswordReset={() => console.log("Password Reset")}
+      />  
+      {/* <Calendar
         selectedDates={selectedDates}
         onDateSelect={handleDateSelect}
         disablePast={false}
@@ -31,7 +40,7 @@ const Example = () => {
           { label: 'Album', href: '#' },
           { label: 'Song', isCurrent: true }
         ]}
-      />      
+      />       */}
     </div>
   );
 };
