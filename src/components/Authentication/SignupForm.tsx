@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
+import { EyeIcon } from './EyeIcon';
 
 interface SignUpFormProps {
   onSignUp?: (email: string, password: string, name: string) => void;
@@ -20,6 +21,7 @@ export function SignUpForm({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState(initialName);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,16 +71,25 @@ export function SignUpForm({
           <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Password <span className="text-red-500">*</span>
           </label>
+          <div className="mt-1 relative rounded-md shadow-sm">
           <input
             id="password"
             name="password"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white"
+            className="block w-full pr-10 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white"
             placeholder="••••••••"
           />
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+            <EyeIcon 
+              visible={showPassword} 
+              toggle={() => setShowPassword(!showPassword)}
+              className="h-5 w-5"
+            />
+          </div>
+        </div>
         </div>
 
         <div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
+import { EyeIcon } from './EyeIcon';
 
 interface SignInFormProps {
   onSignIn?: (email: string, password: string, remember: boolean) => void;
@@ -22,6 +23,7 @@ export function SignInForm({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(initialRemember);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,16 +58,25 @@ export function SignInForm({
           <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Password <span className="text-red-500">*</span>
           </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white"
-            placeholder="••••••••"
-          />
+          <div className="mt-1 relative rounded-md shadow-sm">
+            <input
+              id="password"
+              name="password"
+              type={showPassword ? 'text' : 'password'}
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="block w-full pr-10 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white"
+              placeholder="••••••••"
+            />
+            <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+              <EyeIcon 
+                visible={showPassword} 
+                toggle={() => setShowPassword(!showPassword)}
+                className="h-5 w-5"
+              />
+            </div>
+        </div>
         </div>
 
         <div className="flex items-center justify-between">
@@ -78,7 +89,7 @@ export function SignInForm({
               onChange={(e) => setRemember(e.target.checked)}
               className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 dark:border-gray-600 rounded"
             />
-            <label htmlFor="remember" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+            <label htmlFor="remember" className="ml-2 block text-sm text-gray-700 dark:text-gray-300 select-none">
               Remember me
             </label>
           </div>
