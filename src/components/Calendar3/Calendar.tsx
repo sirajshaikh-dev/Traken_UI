@@ -30,7 +30,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [range, setRange] = useState<[Date | null, Date | null]>([null, null]);
   const [hoveredDate, setHoveredDate] = useState<Date | null>(null);
-  const [todayClicked, setTodayClicked] = useState(false);
+  // const [todayClicked, setTodayClicked] = useState(false);
 
   const handleMonthChange = (month: number) => {
     setCurrentMonth(new Date(currentMonth.getFullYear(), month));
@@ -63,7 +63,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const handleTodayClick = () => {
     const today = new Date();
     setCurrentMonth(today);
-    setTodayClicked(true);
+    // setTodayClicked(true);
     
     // Clear previous selections
     if (variant === "range-picker") {
@@ -74,7 +74,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     onDateSelect(today);
     
     // Reset button animation
-    setTimeout(() => setTodayClicked(false), 200);
+    // setTimeout(() => setTodayClicked(false), 200);
   };
 
   return (
@@ -87,12 +87,11 @@ export const Calendar: React.FC<CalendarProps> = ({
         onPrevMonth={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1))}
         onNextMonth={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1))}
         onToday={handleTodayClick}
-        todayClicked={todayClicked}
       />
 
       <div className="grid grid-cols-7 gap-1 text-center text-sm mb-2">
         {daysOfWeek.map((day, index) => (
-          <div key={`${day}-${index}`} className="font-bold text-gray-400 py-1 flex justify-center">
+          <div key={`${day}-${index}`} className="font-bold text-white py-1 flex justify-center">
             <div className="w-9">{day}</div>
           </div>
         ))}

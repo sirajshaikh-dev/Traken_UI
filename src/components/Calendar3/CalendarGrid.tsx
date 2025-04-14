@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { calendarDayVariants } from "./CalendarVariants";
+import Button from "../button/Button";
 
 interface CalendarGridProps {
   currentMonth: Date;
@@ -109,10 +110,10 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                   isPreviewEdge,
                   isTodayHighlighted,
                 }),
-                "w-9 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
+                "w-9 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2",
                 {
-                  "bg-blue-600 text-white": isSelected,
-                  "bg-blue-500/30": isInRange && !isSelected,
+                  "bg-primary text-white": isSelected,
+                  "bg-primary-500/30": isInRange && !isSelected,
                 }
               )}
               onClick={() => !isDisabled && onDateSelect(date)}

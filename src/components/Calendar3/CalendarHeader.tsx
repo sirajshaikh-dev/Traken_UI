@@ -3,6 +3,7 @@ import { calendarHeaderVariants } from "./CalendarVariants";
 import { MonthPicker } from "./MonthPicker";
 import { YearPicker } from "./YearPicker";
 import { cn } from "@/lib/utils";
+import Button from "../button/Button";
 
 interface CalendarHeaderProps {
   currentMonth: Date;
@@ -12,7 +13,6 @@ interface CalendarHeaderProps {
   onPrevMonth: () => void;
   onNextMonth: () => void;
   onToday: () => void;
-  todayClicked?: boolean;
 }
 
 export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
@@ -23,7 +23,6 @@ export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   onPrevMonth,
   onNextMonth,
   onToday,
-  todayClicked,
 }) => {
   const [isMonthOpen, setIsMonthOpen] = useState(false);
   const [isYearOpen, setIsYearOpen] = useState(false);
@@ -36,17 +35,12 @@ export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
 
   return (
     <div className={calendarHeaderVariants({ variant: variant === "range-picker" ? "default" : variant })}>
-      <button
+      <Button
         onClick={handleTodayClick}
-        className={cn(
-          "px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-all",
-          {
-            "scale-105 ring-2 ring-blue-400": todayClicked,
-          }
-        )}
+        color="primary"
       >
         Today
-      </button>
+      </Button>
 
       {variant === "month-year-picker" ? (
         <div className="flex gap-2">
@@ -65,21 +59,26 @@ export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
         </div>
       ) : (
         <div className="flex items-center gap-2">
-          <button
+          <Button
             onClick={onPrevMonth}
-            className="p-2 rounded-full hover:bg-gray-800 transition-colors"
+            color="primary"
+            rounded="full"
+            // size="md"
+            className="p-2"
           >
             ←
-          </button>
+          </Button>
           <span className="text-lg font-semibold">
             {currentMonth.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
           </span>
-          <button
+          <Button
             onClick={onNextMonth}
-            className="p-2 rounded-full hover:bg-gray-800 transition-colors"
-          >
+            color="primary"
+            rounded="full"
+            // size="md"
+            className="p-2"          >
             →
-          </button>
+          </Button>
         </div>
       )}
     </div>
