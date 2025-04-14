@@ -73,7 +73,6 @@ export function SignInForm({
               <EyeIcon 
                 visible={showPassword} 
                 toggle={() => setShowPassword(!showPassword)}
-                className="h-5 w-5"
               />
             </div>
         </div>
