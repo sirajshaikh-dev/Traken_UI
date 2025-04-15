@@ -18,12 +18,16 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   const currentIndex = items.findIndex((item) => item.isCurrent);
 
   const visibleItems = shouldTruncate
-    ? [
-        ...items.slice(0, collapseAfter),
-        { label: "...", onClick: () => setExpanded(true) },
-        ...items.slice(currentIndex - 1),
-      ]
-    : items;
+  ? [
+      ...items.slice(0, collapseAfter),
+      { 
+        label: "...", 
+        onClick: () => setExpanded(true),
+        ariaLabel: "Show more breadcrumb items"
+      },
+      ...(currentIndex > 0 ? items.slice(currentIndex) : items.slice(-1))
+    ]
+  : items;
 
   return (
     <nav aria-label="Breadcrumb" className={className}>

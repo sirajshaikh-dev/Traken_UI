@@ -15,7 +15,7 @@ const meta: Meta<typeof Breadcrumb> = {
     },
     color: {
       control: { type: 'select' },
-      options: ['default', 'primary', 'dark'],
+      options: ['default', 'primary', 'secondary','success', 'warning', 'danger'],
       description: 'Color scheme',
     },
     size: {

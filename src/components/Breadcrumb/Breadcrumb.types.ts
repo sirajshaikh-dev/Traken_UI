@@ -25,4 +25,7 @@ collapseAfter?: number;
 className?: string;
 color?: "default" | "primary" | "dark";
 size?: "sm" | "md" | "lg";
+responsiveCollapse?: boolean;
+mobileMaxItems?: number;
+ellipsisComponent?:React.ReactNode
 }

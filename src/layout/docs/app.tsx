@@ -4,6 +4,7 @@
 // import { useState } from "react";
 // import { Breadcrumb } from "@/components/Breadcrumb";
 import { AuthDemo } from "@/components/Authentication/AuthDemo";
+import { Breadcrumb } from "@/components/Breadcrumb";
 const Example = () => {
 
   // const [selectedDates, setSelectedDates] = useState<Date[]>([]);
@@ -14,6 +15,7 @@ const Example = () => {
 
   return (
     <>
+    <Breadcrumb />
     <AuthDemo />
     {/* The below div was parent/main div now i wrapped up all in fragment to test 
       use below div to test only Signin form and remove AuthDemo component

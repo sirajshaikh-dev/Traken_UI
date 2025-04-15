@@ -27,9 +27,13 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
           <a
             href={item.href}
             onClick={item.onClick}
-            className={breadcrumbItemVariants({ active: false })}
+            className={`${breadcrumbItemVariants({ active: false })} flex items-center`}
           >
-            {item.icon && <span className="mr-1">{item.icon}</span>}
+            {item.icon && 
+              <span className="mr-1.5 flex items-center h-full">
+                {item.icon}
+              </span>
+            }
             {item.label}
           </a>
           <span className="mx-1 text-gray-400">{separator}</span>
