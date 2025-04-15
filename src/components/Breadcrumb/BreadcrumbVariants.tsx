@@ -9,7 +9,7 @@ export const breadcrumbVariants = cva("flex flex-wrap items-center gap-2", {
     },
     size: {
       sm: "text-sm",
-      md: "text-base",
+      md: "text-md",
       lg: "text-lg",
     },
   },
@@ -24,8 +24,8 @@ export const breadcrumbItemVariants = cva(
   {
     variants: {
       active: {
-        true: "font-semibold text-gray-900",
-        false: "hover:text-blue-500 hover:underline",
+        true: "font-semibold text-base",
+        false: "hover:text-primary hover:underline",
       },
       disabled: {
         true: "opacity-50 cursor-not-allowed",
