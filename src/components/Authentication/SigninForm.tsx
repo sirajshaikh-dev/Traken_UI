@@ -3,6 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { EyeIcon } from './EyeIcon';
 import Button from '../button/Button';
+import Input from '../input/input';
 // import { cn } from '@/lib/utils';
 
 interface SignInFormProps {
@@ -41,19 +42,22 @@ export function SignInForm({
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Email <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white"
-            placeholder="your@email.com"
-          />
+        <Input
+          id="email"
+          label="Email"
+          labelPlacement="top"
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          color="base"
+          variant="faded"
+          size="md"
+          rounded="md"
+          fullWidth
+          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          placeholder="your@email.com"
+        />
         </div>
 
         <div>
