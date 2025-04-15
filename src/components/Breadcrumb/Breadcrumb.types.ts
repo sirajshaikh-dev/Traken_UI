@@ -1,11 +1,11 @@
 
 export type BreadcrumbItem = {
-    label: string;
-    href?: string;
-    icon?: React.ReactNode;
-    isCurrent?: boolean;
-  };
-  
+  label: string;
+  href?: string;
+  icon?: React.ReactNode;
+  isCurrent?: boolean;
+};
+
 //   export type BreadcrumbProps = {
 //     items: BreadcrumbItem[];
 //     separator?: React.ReactNode;
@@ -14,12 +14,15 @@ export type BreadcrumbItem = {
 //     className?: string;
 //   };
 
-  import { BreadcrumbItemType } from "./BreadcrumbItem";
+import { BreadcrumbItemType } from "./BreadcrumbItem";
 
-  export interface BreadcrumbProps {
-    items: BreadcrumbItemType[];
-    separator?: string | React.ReactNode;
-    maxItems?: number;
-    collapseAfter?: number;
-    className?: string;
-  }
+// Breadcrumb.types.ts
+export interface BreadcrumbProps {
+items: BreadcrumbItemType[];
+separator?: string | React.ReactNode;
+maxItems?: number;
+collapseAfter?: number;
+className?: string;
+color?: "default" | "primary" | "dark";
+size?: "sm" | "md" | "lg";
+}

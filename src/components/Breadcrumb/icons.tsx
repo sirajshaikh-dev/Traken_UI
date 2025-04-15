@@ -1,4 +1,4 @@
-// This file contains the SVG icons used in the Breadcrumb component.
+import React from 'react';
 
 export const HomeIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
