@@ -1,10 +1,18 @@
 // import { Calendar } from "@/components/Calendar/Calendar"; //Calendar me variants defined nhi hai
 // import { Calendar } from "@/components/Calendar2/Calendar"; // Calendar2 me 3variants defined hai
 // import { Calendar } from "@/components/Calendar3/Calendar"; // Calendar3 final version he,
+
+// import { Calendar } from "@/components/Calendar5/Calendar"; // Calendar5 after defining theme.
+
+import { DefaultCalendarDemo } from "@/components/Calendar5/Demo/Default.demo";
+import { DisableFutureDemo } from "@/components/Calendar5/Demo/DisableFuture.demo";
+import { DisablePastDemo } from "@/components/Calendar5/Demo/DisablePast.demo";
+import { MonthYearPickerDemo } from "@/components/Calendar5/Demo/MonthYearPicker.demo";
+import { RangePickerDemo } from "@/components/Calendar5/Demo/RangePicker.demo";
 // import { useState } from "react";
 // import { Breadcrumb } from "@/components/Breadcrumb";
-import { AuthDemo } from "@/components/Authentication/AuthDemo";
-import { Breadcrumb } from "@/components/Breadcrumb";
+// import { AuthDemo } from "@/components/Authentication/AuthDemo";
+// import { Breadcrumb } from "@/components/Breadcrumb";
 const Example = () => {
 
   // const [selectedDates, setSelectedDates] = useState<Date[]>([]);
@@ -14,9 +22,14 @@ const Example = () => {
   // };
 
   return (
-    <>
-    <Breadcrumb />
-    <AuthDemo />
+    <div className="p-8 max-w-4xl mx-auto">
+      <DefaultCalendarDemo />
+      <MonthYearPickerDemo />
+      <RangePickerDemo />
+      <DisablePastDemo />
+      <DisableFutureDemo />
+    {/* <Breadcrumb /> */}
+    {/* <AuthDemo /> */}
     {/* The below div was parent/main div now i wrapped up all in fragment to test 
       use below div to test only Signin form and remove AuthDemo component
     */}
@@ -49,7 +62,7 @@ const Example = () => {
         ]}
       />       */}
     {/* </div>} */}
-    </>
+    </div>
   );
 };
 
